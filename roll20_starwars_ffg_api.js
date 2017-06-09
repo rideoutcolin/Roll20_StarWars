@@ -2633,7 +2633,14 @@ eote.process.crit = function (cmd, diceObj) {
             severity: 4,
             name: 'Dead',
             Result: 'Complete, absolute death.'
-        }
+        },
+		// Magic Trauma
+		{
+			percent: '1001 to 2000',
+			severity: 0,
+			name: 'Magic Trauma'
+			Result: 'Add 2blk to all magic checks until healed.'
+		}
     ];
     var critTableMachine = [
         {
@@ -2789,6 +2796,7 @@ eote.process.crit = function (cmd, diceObj) {
             var percent = critTable[key].percent.split(' to ');
             var low = parseInt(percent[0]);
             var high = percent[1] ? parseInt(percent[1]) : 1000;
+			var magicThreshold = percent[1001] ? parseInt(percent[1001]) : 2000;
            
             if ((rollTotal >= low) && (rollTotal <= high)) {
 
